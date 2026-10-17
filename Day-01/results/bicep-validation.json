@@ -1,0 +1,75 @@
+﻿{
+  "error": null,
+  "id": "/subscriptions/0a957d1f-3af1-45ad-8881-7dfb9ad1f42b/resourceGroups/rg-ai103-poc/providers/Microsoft.Resources/deployments/main",
+  "name": "main",
+  "properties": {
+    "correlationId": "c1b48290-ab44-40cb-8ce8-aeb0421378c8",
+    "debugSetting": null,
+    "dependencies": [],
+    "diagnostics": null,
+    "duration": "PT0S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": null,
+    "outputs": null,
+    "parameters": {
+      "location": {
+        "type": "String",
+        "value": "centralindia"
+      },
+      "prefix": {
+        "type": "String",
+        "value": "ai103training"
+      },
+      "translatorSku": {
+        "type": "String",
+        "value": "F0"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.CognitiveServices",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "centralindia"
+            ],
+            "properties": null,
+            "resourceType": "accounts",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "17702415767001815184",
+    "templateLink": null,
+    "timestamp": "2026-10-16T05:13:59.403350+00:00",
+    "validatedResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/0a957d1f-3af1-45ad-8881-7dfb9ad1f42b/resourceGroups/rg-ai103-poc/providers/Microsoft.CognitiveServices/accounts/ai103trainingeduhx6wcx3ta6",
+        "identifiers": null,
+        "resourceGroup": "rg-ai103-poc",
+        "resourceType": null
+      }
+    ],
+    "validationLevel": null
+  },
+  "resourceGroup": "rg-ai103-poc",
+  "type": "Microsoft.Resources/deployments"
+}

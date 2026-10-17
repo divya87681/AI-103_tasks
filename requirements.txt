@@ -1,0 +1,4 @@
+pytest>=8,<10
+PyYAML>=6,<7
+azure-identity>=1.17,<2
+requests>=2.31,<3

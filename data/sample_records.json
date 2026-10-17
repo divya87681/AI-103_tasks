@@ -1,0 +1,12 @@
+[
+  {
+    "id": "fictional-001",
+    "category": "training",
+    "text": "Synthetic sample for Azure AI-103 challenge"
+  },
+  {
+    "id": "fictional-002",
+    "category": "training",
+    "text": "No real employee or financial data"
+  }
+]

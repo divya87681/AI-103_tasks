@@ -1,0 +1,21 @@
+﻿{
+  "status": "MOCK_ONLY_NOT_AZURE",
+  "service": "Azure AI Language",
+  "input_text": "My laptop is broken and I cannot access the payroll system for EMP-104",
+  "key_phrases": [
+    "payroll system",
+    "laptop"
+  ],
+  "entities": [
+    {
+      "text": "EMP-104",
+      "type": "SYNTHETIC_IDENTIFIER"
+    }
+  ],
+  "heuristic_category": "IT_SUPPORT",
+  "limitations": [
+    "Key phrases are selected by local rules, not an AI model.",
+    "Entities are limited to synthetic identifier patterns.",
+    "The heuristic category is not an Azure classification result."
+  ]
+}

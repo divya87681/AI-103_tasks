@@ -1,0 +1,14 @@
+
+azure:
+  subscription_id: REPLACE_ME
+  resource_group: rg-ai103-poc
+  location: centralindia
+  service: Azure AI Translator
+  sku: F0
+  use_managed_identity: true
+
+project:
+  name: multilingual-query-handling
+  environment: training
+  live_azure_calls_approved: false
+  status: NOT_VERIFIED
