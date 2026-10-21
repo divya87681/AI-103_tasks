@@ -1,0 +1,26 @@
+
+service:
+  name: azure-custom-vision
+  verification_status: NOT_VERIFIED
+  adapter: mock
+
+classification:
+  project_name: office-asset-classifier
+  classification_type: Multiclass
+  labels:
+    - laptop
+    - keyboard
+    - mouse
+
+azure:
+  resource_group: rg-ai103-poc
+  location: centralindia
+  training_endpoint_env: CUSTOM_VISION_TRAINING_ENDPOINT
+  training_key_env: CUSTOM_VISION_TRAINING_KEY
+  prediction_endpoint_env: CUSTOM_VISION_PREDICTION_ENDPOINT
+  prediction_key_env: CUSTOM_VISION_PREDICTION_KEY
+  project_id_env: CUSTOM_VISION_PROJECT_ID
+  published_model_env: CUSTOM_VISION_MODEL_NAME
+
+security:
+  live_azure_calls_approved: false
