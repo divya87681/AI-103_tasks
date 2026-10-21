@@ -32,12 +32,15 @@ jobs:
         run: |
           python -c "import yaml; from pathlib import Path; p=Path('Day-03/config.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['service']['name']=='azure-custom-vision'; assert d['service']['verification_status']=='NOT_VERIFIED'; assert d['service']['adapter']=='mock'; assert d['security']['live_azure_calls_approved'] is False; assert set(d['classification']['labels']) == {'laptop','keyboard','mouse'}; print('Day-03 YAML validation PASSED')"
 
-       
-      - name: Set up Bicep
-        uses: Azure/setup-bicep@v2
-
+      - name: Set up Azure CLI
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az version
+            az bicep install
+            az bicep version
 
       - name: Build Bicep template
-        run: bicep build infra/main.bicep
+        run: az bicep build --file infra/main.bicep
 
 # Deployment intentionally excluded until approval and authentication setup.
