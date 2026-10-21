@@ -1,19 +1,23 @@
 {
   "service": "Azure Custom Vision",
-  "status": "NOT_VERIFIED",
-  "adapter_tested": "mock",
-  "blocker": "A live Azure Custom Vision training and prediction call has not been demonstrated.",
+  "status": "VERIFIED",
+  "adapter_tested": "separate_azure_custom_vision_sdk_workflow",
+  "blocker": null,
   "bicep_template_build": "SUCCEEDED",
   "training_deployment_validation": "SUCCEEDED",
   "prediction_deployment_validation": "SUCCEEDED",
-  "resources_deployed": false,
-  "real_image_classification_verified": false,
-  "reason": "The current implementation infers labels from filenames and does not inspect image pixels. Azure resources and live API behavior have not been verified.",
+  "resources_deployed": true,
+  "real_image_classification_verified": true,
+  "reason": "Azure Custom Vision resources were provisioned, 15 labeled images were uploaded, the model was trained and published, and live predictions succeeded for three images. These images were also used for training, so generalization to unseen images is not verified. The existing filename-based CLI classifier remains a mock.",
   "next_steps": [
-    "Confirm approval before creating Azure resources.",
-    "Verify Azure Custom Vision resource availability and permissions.",
-    "Implement and test a real API call if approved.",
-    "Use valid synthetic images for real model evaluation.",
-    "Record sanitized API responses and costs."
-  ]
+    "Evaluate with independent images that were not used for training.",
+    "Expand the dataset with varied images for each class.",
+    "Record model evaluation metrics and document limitations.",
+    "Keep API keys out of source code and Git history."
+  ],
+  "training_image_count": 15,
+  "trained_iteration": "6a5eeabc-bbb7-4efc-a1db-9f320c7b1a1d",
+  "published_model": "office-asset-v1",
+  "smoke_test_images": 3,
+  "smoke_test_correct": 3
 }

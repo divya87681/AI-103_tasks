@@ -194,3 +194,43 @@ These are proposed OCR schemas, not output from a verified OCR call. The current
 | Service timeout or network failure | Return an error and preserve diagnostic information without secrets |
 
 **Verification status:** The proposed OCR request/response flow and error cases have not been demonstrated against a live Azure Vision API. The existing Day-03 mock classifier remains `NOT_VERIFIED`.
+
+@'
+
+## 14. Real Azure Custom Vision — Verified Results
+
+### Azure resources
+- Training resource: `ai103cvtrain-dhivya-20261021`
+- Prediction resource: `ai103cvpred-dhivya-20261021`
+- Resource group: `rg-ai103-poc`
+- Region: `centralindia`
+- SKU: `F0` for both resources
+- Both resources reported provisioning state `Succeeded`.
+
+### Project and training
+- Project: `office-asset-classifier`
+- Classification type: Multiclass
+- Labels: `laptop`, `keyboard`, `mouse`
+- Uploaded training images: 15 total, 5 per label
+- Training iteration: `6a5eeabc-bbb7-4efc-a1db-9f320c7b1a1d`
+- Training status: `Completed`
+- Published model: `office-asset-v1`
+
+### Live prediction evidence
+- `results/real-prediction.json` contains a live prediction response.
+- `results/class-predictions.json` contains predictions for one image from each class.
+- Observed smoke-test result: 3 of 3 predictions matched their expected labels.
+- Observed smoke-test accuracy: 100% on these three samples only.
+
+### Limitations
+The three evaluation images were also used during training. These results do not establish accuracy on unseen images or real-world generalization. Five training images per class are only a minimal starting dataset. Independent evaluation is still required.
+
+### Security
+Credentials were supplied through environment variables and must not be committed. Review Git changes before committing evidence and scripts.
+
+### Current verification status
+Real Azure Custom Vision training, publishing, and prediction calls have succeeded. The live classification workflow is verified for the recorded smoke test; generalization and independent accuracy remain unverified.
+'@ | Add-Content .\Day-03\observations.md -Encoding utf8
+
+### Implementation boundary
+The separate Azure Custom Vision SDK scripts perform live training and prediction. The existing filename-based CLI classifier remains a mock and has not been replaced by the Azure SDK workflow.

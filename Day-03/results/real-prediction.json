@@ -1,0 +1,21 @@
+{
+  "verification_status": "VERIFIED",
+  "adapter": "azure_custom_vision",
+  "image": "laptop_01.jpg",
+  "project_id": "86d25adc-6f80-4aae-a6d5-d53de6c6d650",
+  "published_model": "office-asset-v1",
+  "predictions": [
+    {
+      "tag": "laptop",
+      "probability": 1.0
+    },
+    {
+      "tag": "keyboard",
+      "probability": 0.0
+    },
+    {
+      "tag": "mouse",
+      "probability": 0.0
+    }
+  ]
+}

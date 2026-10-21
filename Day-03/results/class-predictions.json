@@ -1,0 +1,32 @@
+[
+  {
+    "image": "laptop/laptop_01.jpg",
+    "expected_label": "laptop",
+    "predicted_label": "laptop",
+    "probabilities": {
+      "laptop": 1.0,
+      "keyboard": 0.0,
+      "mouse": 0.0
+    }
+  },
+  {
+    "image": "keyboard/keyboard_01.jpg",
+    "expected_label": "keyboard",
+    "predicted_label": "keyboard",
+    "probabilities": {
+      "keyboard": 1.0,
+      "laptop": 0.0,
+      "mouse": 0.0
+    }
+  },
+  {
+    "image": "mouse/mouse_01.jpg",
+    "expected_label": "mouse",
+    "predicted_label": "mouse",
+    "probabilities": {
+      "mouse": 1.0,
+      "laptop": 0.0,
+      "keyboard": 0.0
+    }
+  }
+]
