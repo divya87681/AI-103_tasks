@@ -28,8 +28,14 @@ jobs:
         run: |
           python -c "import yaml; from pathlib import Path; p=Path('config/settings.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['project']['status']=='NOT_VERIFIED'; assert d['project']['live_azure_calls_approved'] is False; assert d['azure']['resource_group']; assert d['azure']['location']; print('YAML validation PASSED')"
 
+      - name: Validate Day-03 Custom Vision configuration
+        run: |
+          python -c "import yaml; from pathlib import Path; p=Path('Day-03/config.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['service']['name']=='azure-custom-vision'; assert d['service']['verification_status']=='NOT_VERIFIED'; assert d['service']['adapter']=='mock'; assert d['security']['live_azure_calls_approved'] is False; assert set(d['classification']['labels']) == {'laptop','keyboard','mouse'}; print('Day-03 YAML validation PASSED')"
+
+       
       - name: Set up Bicep
-        uses: azure/setup-bicep@v2
+        uses: Azure/setup-bicep@v2
+
 
       - name: Build Bicep template
         run: bicep build infra/main.bicep
