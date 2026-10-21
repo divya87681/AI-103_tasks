@@ -1,0 +1,8 @@
+{
+  "image": "laptop_01.jpg",
+  "label": "laptop",
+  "confidence": null,
+  "adapter": "mock",
+  "verification_status": "NOT_VERIFIED",
+  "note": "Label inferred from filename; no image model was used."
+}

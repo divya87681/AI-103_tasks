@@ -1,0 +1,13 @@
+{
+  "service": "Azure Custom Vision",
+  "verification_status": "NOT_VERIFIED",
+  "adapter_tested": "mock",
+  "workflow_tests_passed": 5,
+  "workflow_tests_failed": 0,
+  "real_images_evaluated": 0,
+  "model_accuracy": null,
+  "precision": null,
+  "recall": null,
+  "f1_score": null,
+  "note": "Only filename-based mock workflow tests were performed. No real image model was trained or evaluated."
+}

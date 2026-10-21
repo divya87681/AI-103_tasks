@@ -1,4 +1,5 @@
-﻿targetScope = 'resourceGroup'
+﻿
+targetScope = 'resourceGroup'
 
 @description('Deployment location')
 param location string = resourceGroup().location
@@ -8,10 +9,12 @@ param location string = resourceGroup().location
 @maxLength(20)
 param prefix string = 'ai103training'
 
-@description('Select the service for the current day')
+@description('Select the service to configure')
 @allowed([
   'Translator'
   'Language'
+  'CustomVisionTraining'
+  'CustomVisionPrediction'
 ])
 param serviceKind string = 'Translator'
 
@@ -29,13 +32,30 @@ param translatorSku string = 'F0'
 ])
 param languageSku string = 'F0'
 
+@description('Custom Vision training pricing tier')
+@allowed([
+  'F0'
+  'S0'
+])
+param customVisionTrainingSku string = 'F0'
+
+@description('Custom Vision prediction pricing tier')
+@allowed([
+  'F0'
+  'S0'
+])
+param customVisionPredictionSku string = 'F0'
+
+var accountSuffix = serviceKind == 'Translator' ? 'tr' : serviceKind == 'Language' ? 'lang' : serviceKind == 'CustomVisionTraining' ? 'cvtrain' : 'cvpred'
+
+var accountKind = serviceKind == 'Translator' ? 'TextTranslation' : serviceKind == 'Language' ? 'TextAnalytics' : serviceKind == 'CustomVisionTraining' ? 'CustomVision.Training' : 'CustomVision.Prediction'
+
+var accountSku = serviceKind == 'Translator' ? translatorSku : serviceKind == 'Language' ? languageSku : serviceKind == 'CustomVisionTraining' ? customVisionTrainingSku : customVisionPredictionSku
+
 var accountName = take(
-  '${prefix}${serviceKind == 'Translator' ? 'tr' : 'lang'}${uniqueString(resourceGroup().id)}',
+  '${prefix}${accountSuffix}${uniqueString(resourceGroup().id)}',
   63
 )
-
-var accountKind = serviceKind == 'Translator' ? 'TextTranslation' : 'TextAnalytics'
-var accountSku = serviceKind == 'Translator' ? translatorSku : languageSku
 
 resource aiAccount 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
   name: accountName
@@ -56,7 +76,7 @@ output accountKind string = aiAccount.kind
 output accountLocation string = aiAccount.location
 output accountSkuName string = aiAccount.sku.name
 
-// Preserve Day 01 output names for Translator deployments.
+// Preserve Day 01 Translator output names.
 output translatorResourceName string = serviceKind == 'Translator' ? aiAccount.name : ''
 output translatorEndpoint string = serviceKind == 'Translator' ? aiAccount.properties.endpoint : ''
 output translatorLocation string = serviceKind == 'Translator' ? aiAccount.location : ''

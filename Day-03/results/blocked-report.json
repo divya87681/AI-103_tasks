@@ -1,0 +1,19 @@
+{
+  "service": "Azure Custom Vision",
+  "status": "NOT_VERIFIED",
+  "adapter_tested": "mock",
+  "blocker": "A live Azure Custom Vision training and prediction call has not been demonstrated.",
+  "bicep_template_build": "SUCCEEDED",
+  "training_deployment_validation": "SUCCEEDED",
+  "prediction_deployment_validation": "SUCCEEDED",
+  "resources_deployed": false,
+  "real_image_classification_verified": false,
+  "reason": "The current implementation infers labels from filenames and does not inspect image pixels. Azure resources and live API behavior have not been verified.",
+  "next_steps": [
+    "Confirm approval before creating Azure resources.",
+    "Verify Azure Custom Vision resource availability and permissions.",
+    "Implement and test a real API call if approved.",
+    "Use valid synthetic images for real model evaluation.",
+    "Record sanitized API responses and costs."
+  ]
+}
