@@ -1,5 +1,4 @@
-```yaml
-name: ai103-validation
+﻿name: ai103-validation
 
 on:
   push:
@@ -13,7 +12,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -59,4 +59,3 @@ jobs:
         run: az bicep build --file infra/main.bicep
 
   # Deployment is intentionally excluded until explicitly approved.
-```
