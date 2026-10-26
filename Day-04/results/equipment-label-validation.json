@@ -1,0 +1,10 @@
+{
+  "status": "SUCCESS",
+  "text": "EQUIPMENT ASSET LABEL\nAsset ID. AST-1042\nEquipment Laptop\nDepartment IT",
+  "asset_id": "AST-1042",
+  "asset_id_count": 1,
+  "confidence_mean": 0.9645,
+  "confidence_word_count": 10,
+  "identifier_valid": true,
+  "matched_expected": true
+}

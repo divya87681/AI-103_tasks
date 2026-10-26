@@ -18,3 +18,21 @@ venv/
 
 # Generated Bicep output
 infra/main.json
+
+# Python virtual environments
+.knowledge/
+.venv-knowledge/
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local secrets
+.env
+
+# Local infrastructure backups
+infra/*.day02-backup
+infra/*.day05-backup

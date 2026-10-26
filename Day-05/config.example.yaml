@@ -1,0 +1,17 @@
+﻿service:
+  name: knowledge-repository
+  environment: local
+
+database:
+  provider: postgresql
+  connection_env: DATABASE_URL
+  live_connection_enabled: false
+  ssl_mode: require
+
+security:
+  enforce_role_checks: true
+  audit_lookups: true
+  roles:
+    - Employee
+    - Manager
+    - Admin

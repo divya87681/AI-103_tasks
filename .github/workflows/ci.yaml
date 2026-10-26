@@ -1,4 +1,4 @@
-
+```yaml
 name: ai103-validation
 
 on:
@@ -13,26 +13,41 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: python -m pip install -r requirements.txt
 
-      - name: Run Python tests
+      - name: Run all tests
         run: python -m pytest -v
 
-      - name: Validate YAML configuration
+      - name: Validate root YAML configuration
         run: |
-          python -c "import yaml; from pathlib import Path; p=Path('config/settings.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['project']['status']=='NOT_VERIFIED'; assert d['project']['live_azure_calls_approved'] is False; assert d['azure']['resource_group']; assert d['azure']['location']; print('YAML validation PASSED')"
+          python -c "import yaml; from pathlib import Path; p=Path('config/settings.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['project']['status']=='NOT_VERIFIED'; assert d['project']['live_azure_calls_approved'] is False; assert d['azure']['resource_group']; assert d['azure']['location']; print('Root YAML validation PASSED')"
 
       - name: Validate Day-03 Custom Vision configuration
         run: |
           python -c "import yaml; from pathlib import Path; p=Path('Day-03/config.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['service']['name']=='azure-custom-vision'; assert d['service']['verification_status']=='NOT_VERIFIED'; assert d['service']['adapter']=='mock'; assert d['security']['live_azure_calls_approved'] is False; assert set(d['classification']['labels']) == {'laptop','keyboard','mouse'}; print('Day-03 YAML validation PASSED')"
 
-      - name: Set up Azure CLI
+      - name: Validate Day-04 OCR configuration
+        run: |
+          python -c "import yaml; from pathlib import Path; p=Path('Day-04/config.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['project']['status']=='NOT_VERIFIED'; assert d['project']['live_azure_calls_approved'] is False; assert d['service']['name']=='azure-ai-vision'; assert d['service']['adapter']=='mock'; assert d['security']['live_azure_calls_approved'] is False; assert d['azure']['endpoint_env']=='AZURE_VISION_ENDPOINT'; print('Day-04 YAML validation PASSED')"
+
+      - name: Validate Day-05 PostgreSQL configuration
+        run: |
+          python -c "import yaml; from pathlib import Path; p=Path('Day-05/config.example.yaml'); d=yaml.safe_load(p.read_text(encoding='utf-8-sig')); assert d['service']['name']=='knowledge-repository'; assert d['database']['provider']=='postgresql'; assert d['database']['connection_env']=='DATABASE_URL'; assert d['database']['live_connection_enabled'] is False; assert d['security']['enforce_role_checks'] is True; assert d['security']['audit_lookups'] is True; assert set(d['security']['roles']) == {'Employee','Manager','Admin'}; print('Day-05 YAML validation PASSED')"
+
+      - name: Validate Day-05 Bicep evidence
+        run: |
+          python -c "import json; from pathlib import Path; p=Path('Day-05/results/bicep-validation.json'); d=json.loads(p.read_text(encoding='utf-8-sig')); assert d['status']=='SUCCEEDED'; assert d['service_kind']=='PostgreSQL'; assert d['database_name']=='knowledge_repository'; assert d['validation_only'] is True; assert d['azure_deployment']=='NOT_STARTED'; print('Day-05 Bicep evidence validation PASSED')"
+
+      - name: Confirm live PostgreSQL remains unverified
+        run: |
+          python -c "import json; from pathlib import Path; d=json.loads(Path('Day-05/results/postgres-status.json').read_text(encoding='utf-8-sig')); assert d['status']=='NOT_VERIFIED'; assert d['azure_deployment']=='NOT_STARTED'; print('Day-05 live PostgreSQL status validation PASSED')"
+
+      - name: Set up Azure CLI and Bicep
         uses: azure/CLI@v2
         with:
           inlineScript: |
@@ -43,4 +58,5 @@ jobs:
       - name: Build Bicep template
         run: az bicep build --file infra/main.bicep
 
-# Deployment intentionally excluded until approval and authentication setup.
+  # Deployment is intentionally excluded until explicitly approved.
+```

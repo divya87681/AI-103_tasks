@@ -1,0 +1,10 @@
+﻿{
+  "status": "NOT_VERIFIED",
+  "component": "PostgreSQL connection",
+  "reason": "DATABASE_URL is not configured.",
+  "mock_tests": {
+    "status": "PASSED",
+    "passed": 9
+  },
+  "azure_deployment": "NOT_STARTED"
+}

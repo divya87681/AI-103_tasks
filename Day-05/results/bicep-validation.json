@@ -1,0 +1,10 @@
+﻿{
+  "status": "SUCCEEDED",
+  "component": "Azure Database for PostgreSQL Bicep validation",
+  "resource_group": "rg-ai103-day04-vision",
+  "service_kind": "PostgreSQL",
+  "database_name": "knowledge_repository",
+  "validation_only": true,
+  "azure_deployment": "NOT_STARTED",
+  "note": "Azure CLI validation succeeded. No Azure resources were created."
+}

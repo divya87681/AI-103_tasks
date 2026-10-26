@@ -1,0 +1,27 @@
+
+project:
+  name: azure-vision-ocr
+  day: 4
+  status: NOT_VERIFIED
+  live_azure_calls_approved: false
+
+service:
+  name: azure-ai-vision
+  feature: read
+  api_version: "2024-02-01"
+  adapter: mock
+
+azure:
+  resource_group: rg-ai103-day04-vision
+  location: centralindia
+  endpoint_env: AZURE_VISION_ENDPOINT
+  use_managed_identity: true
+
+ocr:
+  expected_identifier_pattern: "^AST-[0-9]{4}$"
+  confidence_threshold: 0.80
+
+security:
+  live_azure_calls_approved: false
+  secrets_from_environment: true
+  use_synthetic_data: true
